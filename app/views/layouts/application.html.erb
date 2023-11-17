@@ -11,6 +11,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar Navbar">
+        <div class="container-fluid">
+          <p class="text-center Navbar__text">スケジュール管理アプリ</p>
+        </div>
+      </nav>
+    </header>
+
+    <% if flash[:notice]%>
+      <div class="flash">
+        <%=flash[:notice] %>
+      </div>
+    <% end %>
+    
+  <%= yield %>
+
   </body>
+  
 </html>

@@ -1,0 +1,22 @@
+<%= form_with model: @post do |form| %> 
+  <% @post.errors.full_messages.each do |message| %>
+    <div class="form-error">
+      <%= message %>
+    </div>
+  <% end %>
+
+  <div class="FormCountainer">
+    <h2 class="NewTitle">予定の編集<h2>
+    <div class="FormTitle"> <%= form.label :タイトル %> </br> <%= form.text_field :title %> </div>
+      <div class="form_at">
+        <div> <%= form.label :開始日 %> </br> <%= form.date_field :start_at %> </div>
+        <div> <%= form.label :終了日 %> </br> <%= form.date_field :end_at %> </div>
+      </div>
+      <div class="FormCheck"> <%= form.check_box :all_day %>終日の場合はチェックを入れます</div>
+      <div class="FormMemo"> <%= form.label :スケジュールメモ %> </br> <%= form.text_area :content %> </div>
+      <div class="footer_button">
+        <div class="SaveBotton"> <%= form.submit "更新" %> </div>
+        <%= link_to "キャンセル",posts_path,class: "cancel_button" %>
+      </div>
+  </div>  
+<% end %>

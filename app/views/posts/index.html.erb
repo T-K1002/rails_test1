@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="PageTitle">
+    <h2 class="PageTitle__text">予定一覧</h2>
+    <%= link_to "新規追加",new_post_path,class: "new_button" %>
+  </div>
+
+  <div class="table_responsive">
+    <table class="table_container">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>タイトル</th>
+          <th>開始日</th>
+          <th>終了日</th>
+          <th>終日</th>
+          <th>更新日時</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>  
+      </thead>
+  
+      <tbody>
+        <% if @posts.count > 0 %>
+          <% @posts.each do |post| %>
+          <tr> 
+            <td> <%= post.id %> </td>
+            <td> <%= post.title %> </td>
+            <td> <%= post.start_at.strftime("%Y/%m/%d") %> </td>
+            <td> <%= post.end_at.strftime("%Y/%m/%d") %> </td>
+            <td> <% if post.all_day %>
+                   <strong>○</strong>
+                 <% end %> </td>
+            <td> <%= post.created_at.strftime("%Y/%m/%d %-H:%M") %> </td>
+            <td> <%= link_to "詳細",post_path(post) %> </td>
+            <td> <%= link_to "編集",edit_post_path(post) %> </td>
+            <td> <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" } %> </td>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="9">現在登録しているスケジュールはありません</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+
+  <footer class="footer_responsive">
+    <div class="footer_container">
+        <p class="total">
+          予定合計 : <%= Post.count %>
+        </p>
+
+        <p class="datetime_now">
+         <% datetime = DateTime.now %>
+         本日の日付 : <%= datetime.strftime("%Y/%m/%d") %>
+        </p>
+    </div>
+  </footer>
+</div>

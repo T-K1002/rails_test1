@@ -1,0 +1,35 @@
+<div class="ShowCountainer">
+  <%= link_to "← 一覧に戻る",posts_path,class: "back_button" %>
+  <div class="PageTitle">
+    <h2> <%= @post.title %> </h2>
+    <%= link_to "編集",edit_post_path,class: "edit_button" %>
+  </div>
+  <table class="schedule_table">
+      <tbody>
+      <tr>
+        <th> 開始日 </th>
+        <td> <%= @post.start_at.strftime("%Y/%m/%d") %> </td>
+      </tr>
+
+      <tr>
+        <th> 終了日 </th>
+        <td> <%= @post.end_at.strftime("%Y/%m/%d") %> </td>
+      </tr>
+
+      <tr>
+        <th> 終日 </th>
+        <td> 
+          <% if @post.all_day %>
+          <strong>○</strong>
+          <% end %> 
+        </td>
+      </tr>
+
+      <tr>
+        <th> スケジュールメモ </th>
+        <td> <%= @post.content %> </td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
